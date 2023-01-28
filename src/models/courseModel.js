@@ -28,10 +28,10 @@ const courseSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    approved:{
-        type:String,
-        enum:['yes','no'],
-        default:"no"
+    approved: {
+        type: String,
+        enum: ['yes', 'no'],
+        default: "no"
     }
 }, { timestamps: true })
 

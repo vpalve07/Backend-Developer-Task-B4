@@ -17,7 +17,6 @@ const Authentication = function (req, res, next) {
     }
 }
 
-
 const admin = function (req, res, next) {
     try {
         let token = req.headers['x-api-key']
