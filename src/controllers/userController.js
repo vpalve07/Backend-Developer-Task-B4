@@ -50,6 +50,7 @@ const login = async function (req, res) {
         if (Object.keys(data).length > 2) return res.status(400).send({ status: false, msg: "request body can only contain email and password" })
 
         let checkUser = await userModel.findOne({ email: data.email })
+        if(!checkUser) return res.status(400).send({ status: false, message: "Email ID is Wrong" })
         bcrypt.compare(data.password, checkUser.password, (err, pass) => {
             if (err) { throw err; }
             if (pass) {
@@ -58,7 +59,7 @@ const login = async function (req, res) {
                 res.setHeader('x-api-key', token)
                 return res.status(200).send({ status: true, message: `${checkUser.role} is logged in successfully`, token: token })
             } else {
-                return res.status(400).send({ status: false, message: "Wrong login Credentials" })
+                return res.status(400).send({ status: false, message: "Password is wrong" })
             }
         });
 
