@@ -21,7 +21,7 @@ const admin = function (req, res, next) {
     try {
         let token = req.headers['x-api-key']
         if (!token) return res.status(400).send({ status: false, msg: "token is required" })
-        if (req.decode.role !== 'Admin') return res.status(401).send({ status: false, data: "Authorization Failed" })
+        if (req.decode.role !== 'Admin') return res.status(401).send({ status: false, data: "Super Admin or Employee can not perform this task" })
         next()
     } catch (error) {
         res.status(500).send({ status: false, errorType: error.name, errorMsg: error.message })
@@ -32,7 +32,7 @@ const superAdmin = function (req, res, next) {
     try {
         let token = req.headers['x-api-key']
         if (!token) return res.status(400).send({ status: false, msg: "token is required" })
-        if (req.decode.role !== 'Super Admin') return res.status(401).send({ status: false, data: "Authorization Failed" })
+        if (req.decode.role !== 'Super Admin') return res.status(401).send({ status: false, data: "Admin or Employee can not perform this task" })
         next()
     } catch (error) {
         res.status(500).send({ status: false, errorType: error.name, errorMsg: error.message })
@@ -43,7 +43,7 @@ const employee = function (req, res, next) {
     try {
         let token = req.headers['x-api-key']
         if (!token) return res.status(400).send({ status: false, msg: "token is required" })
-        if (req.decode.role !== 'Employee') return res.status(401).send({ status: false, data: "Authorization Failed" })
+        if (req.decode.role !== 'Employee') return res.status(401).send({ status: false, data: "Super Admin or Admin can not perform this task" })
         next()
     } catch (error) {
         res.status(500).send({ status: false, errorType: error.name, errorMsg: error.message })
