@@ -3,7 +3,6 @@
 ## Hint:
 The Following Assignment Involves Authentication And Authorization For all routes/api’s. This will be based on a role key in the Employee Collection. So , hence you will also try to capture the role key in the JWT token.
 
-
 Task is to build course management system, where you will have to create three user roles, Super Admin, Admin and Employee, perform CRUD operation 
 
 ## Sign up - 
